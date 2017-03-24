@@ -6,8 +6,9 @@
 1. Install Matlab and open it
 2. Clone repository
 3. Navigate to the project folder on Matlab
-4. Use `biplex('NAME_OF_TEST_FILE')' or 'biplex_v2('NAME_OF_TEST_FILE')`
+4. Use `biplex('NAME_OF_TEST_FILE')' or 'biplex_v2('NAME_OF_TEST_FILE')` on Matlab command line
 5. 🤓🤓🤓
+
 
 ### Task list : 
 

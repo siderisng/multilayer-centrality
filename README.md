@@ -17,7 +17,7 @@
 - [x] Make algorithm work with networks that contain dangling nodes
 - [x] Test code's accuracy
 
-- [ ] Implement H-Index algorithm
+- [x] Implement H-Index algorithm
 - [ ] Implement C^3 Algorithm
 - [ ] Test and compare algorithms
 

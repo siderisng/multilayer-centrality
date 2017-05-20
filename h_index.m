@@ -17,7 +17,7 @@ for i=1:n2
        if A(i,j)==0
            continue;
        else
-           NumOfPapers(A(i,j))= NumOfPapers(A(i,j)) + 1 ;
+           NumOfPapers(A(i,j))= NumOfPapers(A(i,j)) + 1 ; % initialize number or papers for every author
        end
    end
 end
@@ -32,7 +32,7 @@ nC=size(B,1);
 NumOfCitations = zeros(1,max(nR,nP));
 
 for i=1:nC
-    NumOfCitations(1,B(i,2))=NumOfCitations(1,B(i,2)) +1;
+    NumOfCitations(1,B(i,2))=NumOfCitations(1,B(i,2)) +1; % citations for every paper
 end
 fprintf('initialized NumOfCitations\n');
 NumOfCitations;
@@ -60,7 +60,7 @@ CPR;
 CPR= sort(CPR,2,'descend');
 fprintf('sorted CPR\n');
 hIndex=zeros(1,nR);
-for i=1:nR
+for i=1:nR  % calculate h-index
     i/nR*100
     for j=1:n5
         if j==n5

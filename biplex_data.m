@@ -358,7 +358,7 @@ end
 
 date=strrep(strrep(datestr(datetime('now')),' ','_'),':','_');
 file=strrep(strrep(file1,'tests/matlab/',''),'.txt','');
-dlmwrite(strcat('outputs/biplex_data_',file,'_',date),result,'	')
+dlmwrite(strcat('outputs/biplex_data_',file,'_',date),c,'	')
 
 toc; % end timer
 beep; % sound when finished

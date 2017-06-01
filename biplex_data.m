@@ -161,7 +161,7 @@ dangling=0;
 dangling2=0;
 dangling3=0;
 dangling4=0;
-d=zeros(double(n),1,'logical');
+d=zeros(double(n),1);
 for i=1:n
     if Kout(i)==0
         d(i,1)=1;
@@ -179,7 +179,7 @@ whos
 
 % du=d*u';
 % clearvars d u
-d2=zeros(double(n),1,'logical');
+d2=zeros(double(n),1);
 for i=1:n
     if Kout2(i)==0
         d2(i,1)=1;
@@ -194,7 +194,7 @@ for i=1:n
     end
 end
 
-d3=zeros(double(n),1,'logical');
+d3=zeros(double(n),1);
 for i=1:n
     if Kout3(i)==0
         d3(i,1)=1;
@@ -210,7 +210,7 @@ for i=1:n
 end
 
 
-d4=zeros(double(n),1,'logical');
+d4=zeros(double(n),1);
 for i=1:n
     if Kout4(i)==0
         d4(i,1)=1;

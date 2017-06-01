@@ -52,8 +52,9 @@ for i=1:n2
             end
             y= A(i,1);
             Pa3(x,y)=1;
-            Kout3(x)= Kout(x) + 1;
-            Kout4(y)= Kout(y) + 1;
+            Pa4(y,x)=1;
+            Kout3(x)= Kout3(x) + 1;
+            Kout4(y)= Kout4(y) + 1;
         end
     end
 end
@@ -74,14 +75,16 @@ for i = 1:n3
                     % we create links from every author of j to every
                     % author of k
                     for m = 2:w2
-                        x2= Pa(j,m);
+                        x2= A(j,m);
                         if x2==0
                             break;
                         else
                             for n = 2:w2
-                                y2= Pa(k,n);
+                                y2= A(k,n);
                                 if y2==0
                                     break;
+                                elseif x2==y2
+                                    continue;
                                 elseif Pa(x2,y2)==1
                                     continue;
                                 else
@@ -105,6 +108,9 @@ for i = 1:n
         if Pa3(i,j)==1
             Pa3(i,j)=Pa3(i,j)/Kout3(i);
         end
+        if Pa4(i,j)==1
+            Pa4(i,j)=Pa4(i,j)/Kout4(i);
+        end
 
     end
 end
@@ -113,24 +119,26 @@ Pa
 Pa2
 Pa3
 
-Pa4=Pa3';
+% Kout4 = fliplr(Kout3);
+
 
 Kout
 Kout2
 Kout3
 Kout4
-
-dlmwrite(strcat('Pa_',file,'_'),Pa,'	');
-dlmwrite(strcat('Pa2_',file,'_'),Pa2,'	');
-dlmwrite(strcat('Pa3_',file,'_'),Pa3,'	');
-dlmwrite(strcat('Pa4_',file,'_'),Pa4,'	');
-
-dlmwrite(strcat('Kout_',file,'_'),Kout,'	');
-dlmwrite(strcat('Kout2_',file,'_'),Kout2,'	');
-dlmwrite(strcat('Kout3_',file,'_'),Kout3,'	');
-dlmwrite(strcat('Kout4_',file,'_'),Kout4,'	');
-
-fprintf('maxReal is %d \n', maxreal);
+% file=strrep(strrep(file1,'tests/matlab/',''),'.txt','');
+% file
+% dlmwrite(strcat('outputs/Pa_',file,'_'),Pa);
+% dlmwrite(strcat('Pa2_',file,'_'),Pa2,'	');
+% dlmwrite(strcat('Pa3_',file,'_'),Pa3,'	');
+% dlmwrite(strcat('Pa4_',file,'_'),Pa4,'	');
+% 
+% dlmwrite(strcat('Kout_',file,'_'),Kout,'	');
+% dlmwrite(strcat('Kout2_',file,'_'),Kout2,'	');
+% dlmwrite(strcat('Kout3_',file,'_'),Kout3,'	');
+% dlmwrite(strcat('Kout4_',file,'_'),Kout4,'	');
+% 
+% fprintf('maxReal is %d \n', maxreal);
 
 %% third
 
@@ -226,7 +234,7 @@ end
 % if dangling2~=0
 %     Pa2= Pa2 + du2;
 % end
-whos
+% whos
 
 % %% initialization of personalization vectors
 % v=zeros(n,1);
@@ -309,6 +317,7 @@ while (dp >= tol)   % computation of pagerank, stops when pi converges
 %         P2 = P2 + d2(j)*u2;
 %             toc;
 %             tic;
+
         C(j) = test*(Pa(:,j) + d(j)*u);
         D(j) = test2*(Pa2(:,j)+ d2(j)*u2);
         E(j) = test3*(Pa3(:,j) + d3(j)*u3);

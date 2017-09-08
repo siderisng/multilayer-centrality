@@ -73,37 +73,36 @@ fprintf('NoRealcounters: %d %d \n',NoRealCounter,NoRealCounter2);
 %% extension to work with dangling nodes
 dangling=0;
 dangling2=0;
-d=zeros(double(n),1);
+d=zeros(double(n),1,'logical');
 for i=1:n
     if Kout(i)==0
         d(i,1)=1;
         dangling= dangling+1;
     end
 end
-u=0;
+u=zeros(n,1);
 for i=1:n
     if d(i,1)==1
-        u=1/dangling;
+        u(i)=1/dangling;
     end
-    break;
 end
-clearvars A A2 C C2 file1 fileId x y
+clearvars A A2 C C2 fileId x y
 whos 
 
 % du=d*u';
 % clearvars d u
-d2=zeros(double(n),1);
+d2=zeros(double(n),1,'logical');
 for i=1:n
     if Kout2(i)==0
         d2(i,1)=1;
         dangling2= dangling2+1;
     end
 end
-u2=0;
+u2=zeros(n,1);
 for i=1:n
     if d2(i,1)==1
-        u2=1/dangling2;
-        break
+        u2(i)=1/dangling2;
+        
     end
 end
  
@@ -163,7 +162,7 @@ sum(v2(:,1));
 
 
 e=ones(n,1); % e vector
-tol=1e-10;   % tolerance
+tol=1e-7;   % tolerance
 pu=(1/(2*n)) * ones(n, 1); % starting values for pagerank
 pu= double(pu);
 pu2=pu; pd=pu; pd2=pu;
@@ -175,56 +174,41 @@ dp=1;
 %v2=v;
 
 %% iterative procedure
+P=sparse(1,double(n));
+P2=sparse(1,double(n));
 
 while (dp >= tol)   % computation of pagerank, stops when pi converges
-    prevpi=(pu+pu2+pd+pd2)/2;
+    prevpi=pi;
     prevpu=pu;
     prevpu2=pu2;
     prevpd2=pd2;
     prevpd=pd;
     test=prevpu'*a;
     test2=prevpu2'*a;
-    C=zeros(1,n);
-    D=C;
-	for i = 1:1
-        for j = 1:n
-            P=full(Pa(:,j));
-            P2=full(Pa2(:,j));
-            if (d(j)~=1)
-                for k = 1:n
-                    C(i,j) = C(i,j) + test(i,k)*P(k);
-                end
-            else
-                for k= 1:n
-                    if (d(k)==1)
-                        C(i,j) = C(i,j) + test(i,k)*u;
-                    else
-                        C(i,j) = C(i,j) + test(i,k)*P(k);
-                    end
-                end
-            end
-            if (d2(j)~=1)
-                for k = 1:n
-                    D(i,j) = D(i,j) + test2(i,k)*P2(k);
-                end
-            else
-                for k = 1:n
-                    if (d2(k)==1)
-                        D(i,j) = D(i,j) + test2(i,k)*u2;
-                    else
-                        D(i,j) = D(i,j) + test2(i,k)*P2(k);
-                    end
-                end
-            end
-        end
-	end
+
+    parfor j = 1:n
+%             fprintf('start %d\n',j);
+%             tic;
+%         P=(Pa(:,j));
+%         P2=(Pa2(:,j));
+% %             toc;
+% %             tic;
+%         P = P + d(j)*u;
+%         P2 = P2 + d2(j)*u2;
+%             toc;
+%             tic;
+        C(j) = test*(Pa(:,j) + d(j)*u);
+        D(j) = test2*(Pa2(:,j)+ d2(j)*u2);
+%             toc;
+    end
+    
 
     pu = [C + prevpu2' + 2*a*prevpd2']'/2;
     pu2 = [prevpu' + D + 2*a*prevpd2']'/2;
     pd = [(1-a)*(prevpu' + prevpd'*e*v' + prevpd2'*e*v')]'/2;
     pd2 = [(1-a)*(prevpu2' + prevpd'*e*v2' + prevpd2'*e*v2')]'/2;
     pi=(pu+pu2+pd+pd2)/2;
-    dp=norm(pi-prevpi,1) % difference of this iteration compared to the previous
+    dp=norm(pi-prevpi,1) % difference of this iteration compared to the previous one
     i=i+1;
 end
 
@@ -246,6 +230,10 @@ result=flipud(sortrows([pi(ind) ind],1));
 for i=1:top
     fprintf('\t%f32\t%d \n',result(i,1),result(i,2));
 end
+
+date=strrep(strrep(datestr(datetime('now')),' ','_'),':','_');
+file=strrep(strrep(file1,'tests/matlab/',''),'.txt','');
+dlmwrite(strcat('outputs/biplex_v2_',file,'_',date),result,'	')
 
 toc; % end timer
 beep; % sound when finished

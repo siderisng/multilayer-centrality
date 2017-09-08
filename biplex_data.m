@@ -126,8 +126,13 @@ Kout
 Kout2
 Kout3
 Kout4
-% file=strrep(strrep(file1,'tests/matlab/',''),'.txt','');
+file=strrep(strrep(file1,'tests/matlab/',''),'.txt','');
 % file
+save(strcat('outputs/Pa_',file,'.mat'),'Pa')
+save(strcat('outputs/Pa2_',file,'.mat'),'Pa2')
+save(strcat('outputs/Pa3_',file,'.mat'),'Pa3')
+save(strcat('outputs/Pa4_',file,'.mat'),'Pa4')
+
 % dlmwrite(strcat('outputs/Pa_',file,'_'),Pa);
 % dlmwrite(strcat('Pa2_',file,'_'),Pa2,'	');
 % dlmwrite(strcat('Pa3_',file,'_'),Pa3,'	');

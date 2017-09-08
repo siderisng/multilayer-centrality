@@ -14,14 +14,14 @@ w2=size(A,2); % Width of A
 Kout=zeros(1,n); 
 Kout2=zeros(1,n);
 Kout3=Kout2;
-Pa= spalloc(double(n),double(n),10000); % P(i,j)= 0 if i dangling, 1/Kout(i) else
-Pa2= spalloc(double(n),double(n),10000);
+Pa= spalloc(double(n),double(n),10000^2); % P(i,j)= 0 if i dangling, 1/Kout(i) else
+Pa2= spalloc(double(n),double(n),10000^2);
 Pa3= Pa2;
 
 fprintf('number of nodes: %d, number of links: %d %d \n',n,n2,n3); 
 
 for i=1:n2
-    i/n2*100;
+    i/n2*100
     for j=2:w2
         x=A(i,j);
         if x==0
@@ -33,9 +33,6 @@ for i=1:n2
                     break;
                 elseif x==y
                     continue;
-                elseif Pa2(x,y)==0
-                    Pa2(x,y)= 1;
-                    Kout2(x)= Kout2(x) + 1;
                 else
                     Pa2(x,y)= Pa2(x,y) + 1;
                     Kout2(x)= Kout2(x) + 1;
@@ -46,14 +43,14 @@ for i=1:n2
 end
 
 for i = 1:n3
-    i/n3*100;
+    i/n3*100
     x=A2(i,1);
     y=A2(i,2);
     Pa3(x,y)=1; % there is a link x->y
     Kout3(x)=Kout3(x)+1;
     for j = 1:n2
         if A(j,1)==x
-            for k = 1:n3
+            for k = 1:n2
                 if A(k,1)==y
                     % j is the index of first paper , k of second
                     % we create links from every author of j to every
@@ -69,9 +66,6 @@ for i = 1:n3
                                     break;
                                 elseif x2==y2
                                     continue;
-                                elseif Pa(x2,y2)==0
-                                    Pa(x2,y2)=1;
-                                    Kout(x2)= Kout(x2)+1;
                                 else
                                     Pa(x2,y2)=Pa(x2,y2)+1;
                                     Kout(x2)=Kout(x2) + 1;
@@ -87,20 +81,20 @@ end
 
 PQI=zeros(1,n);
 
-for i = 1:2
-    prevPQI=PQI;
-    for j = 1:n 
-        sum = 0;
-        for k= 1:n
-            if Pa3(k,j)~=0 % find a paper that cites i'th paper
-                sum = sum + prevPQI(k)/Kout3(k);
-            end
+
+prevPQI=PQI;
+for j = 1:n 
+    sum = 0;
+    for k= 1:n
+        if Pa3(k,j)~=0 % find a paper that cites j'th paper
+            sum = sum + prevPQI(k)/Kout3(k);
         end
-        PQI(j) = (1-theta) + theta* sum;
     end
+    PQI(j) = (1-theta) + theta* sum;
 end
 
-PQI
+
+PQI;
 PCI= zeros(1,n);
 C3= zeros(1,n);
 AAI= zeros(1,n);
@@ -176,5 +170,6 @@ for i=1:top
     fprintf('\t%f32\t%d \n',result(i,1),result(i,2));
 end
     
+toc;
     
 end

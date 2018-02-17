@@ -1,4 +1,4 @@
-function biplex_data(file1,file2,delimeter)
+function biplex_data(file1,file2,delimeter,mapping)
 
 %% First initializations
 tic; % start timer
@@ -69,7 +69,7 @@ for i = 1:n3
     Pa2(x,y)=1/Kout2(x); % there is a link x->y
     for j = 1:n2
         if A(j,1)==x
-            for k = 1:n3
+            for k = 1:n2
                 if A(k,1)==y
                     % j is the index of first paper , k of second
                     % we create links from every author of j to every
@@ -79,8 +79,8 @@ for i = 1:n3
                         if x2==0
                             break;
                         else
-                            for n = 2:w2
-                                y2= A(k,n);
+                            for p = 2:w2
+                                y2= A(k,p);
                                 if y2==0
                                     break;
                                 elseif x2==y2
@@ -285,7 +285,7 @@ end
 
 
 e=ones(n,1); % e vector
-tol=1e-7;   % tolerance
+tol=1e-6;   % tolerance
 pu=(1/(2*n)) * ones(n, 1); % starting values for pagerank
 pu= double(pu);
 pu2=pu; pd=pu; pd2=pu;
@@ -311,7 +311,7 @@ while (dp >= tol)   % computation of pagerank, stops when pi converges
     test3=prevpd';
     test4=prevpd2';
 
-    parfor j = 1:n
+    for j = 1:n
 %             fprintf('start %d\n',j);
 %             tic;
 %         P=(Pa(:,j));
@@ -350,20 +350,21 @@ fprintf('Total number of iterations: %d\n',i);
 fprintf('Final pagerank:\n')
 % disp(pi')
 fprintf('Sum of elements:%f\n',sum(pi));
-fprintf('Final Ranking:\n \tValue: \t  Node:\n')
+fprintf('Final Ranking:\n \t Node:\t  Value:\n')
 
 c=flipud((sort(pi))); 
-top= min(n,10);
+% top= min(n,10);
+top = n;
 result=c(1:top);         %top ten
 ind=find(pi>=c(top));    %their indices
-result=flipud(sortrows([pi(ind) ind],1));
+result=flipud(sortrows([ind pi(ind)],2));
 for i=1:top
     fprintf('\t%f32\t%d \n',result(i,1),result(i,2));
 end
 
 date=strrep(strrep(datestr(datetime('now')),' ','_'),':','_');
 file=strrep(strrep(file1,'tests/matlab/',''),'.txt','');
-dlmwrite(strcat('outputs/biplex_data_',file,'_',date),c,'	')
+dlmwrite(strcat('outputs/biplex_data_',file,'_',date),result,'	')
 
 toc; % end timer
 beep; % sound when finished

@@ -1,0 +1,97 @@
+CUT_Arxiv.txt
+Final Ranking:
+ 	Value: 	  Node:
+	0.002930	54 
+	0.002476	83 
+	0.002335	172 
+	0.002139	479 
+	0.001866	218 
+	0.001786	507 
+	0.001709	2314 
+	0.001702	591 
+	0.001693	481 
+	0.001638	3284 
+Elapsed time is 3440.679547 seconds.
+
+CUT_Drosophila.txt
+Final Ranking:
+ 	Value: 	  Node:
+	0.000641	1269 
+	0.000595	1373 
+	0.000542	5472 
+	0.000493	258 
+	0.000481	3658 
+	0.000453	700 
+	0.000446	7012 
+	0.000436	1156 
+	0.000435	3615 
+	0.000413	3087 
+Elapsed time is 50.140008 seconds.
+
+CUT_Homo.txt
+Final Ranking:
+ 	Value: 	  Node:
+	0.007055	18 
+	0.002757	3870 
+	0.001721	2000 
+	0.001048	446 
+	0.000636	278 
+	0.000603	4295 
+	0.000598	2850 
+	0.000572	24 
+	0.000556	2976 
+	0.000556	4371 
+Elapsed time is 262.952394 seconds.
+
+CUT_MoscowAthletics2013.txt
+Total number of nodes: 88321
+Total number of links: 21644
+Total number of iterations: 748
+Final pagerank:
+Sum of elements:1.000000
+Final Ranking:
+ 	Value: 	  Node:
+	0.00391232	2445 
+	0.00141932	2439 
+	0.00115332	1258 
+	0.00094732	6731 
+	0.00069732	2459 
+	0.00068932	25152 
+	0.00066632	12636 
+	0.00065432	12637 
+	0.00064132	2427 
+	0.00062932	53589 
+Elapsed time is 30775.318304 seconds.
+
+CUT_NYClimateMarch.txt
+Requested 101946x101946 (77.4GB) array exceeds maximum array size preference
+
+CUT_Sacchcere.txt
+Final Ranking:
+ 	Value: 	  Node:
+	0.006133	1778 
+	0.001750	1149 
+	0.001690	2105 
+	0.001291	1296 
+	0.001259	1043 
+	0.001255	262 
+	0.001241	318 
+	0.001220	1861 
+	0.001139	1777 
+	0.001091	2489 
+Elapsed time is 36.164179 seconds.
+
+CUT_Sacchpomb.txt
+Final Ranking:
+ 	Value: 	  Node:
+	0.000841	94 
+	0.000796	658 
+	0.000698	450 
+	0.000664	6 
+	0.000655	14 
+	0.000655	394 
+	0.000615	356 
+	0.000614	197 
+	0.000593	439 
+	0.000578	129 
+Elapsed time is 9.828373 seconds.

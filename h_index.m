@@ -77,14 +77,15 @@ for i=1:nR  % calculate h-index
 end
 
 res=hIndex';
-fprintf('Final Ranking:\n \th-Index: \tAuthor:\n')
+fprintf('Final Ranking:\n \tAuthor:\th-Index: \n')
 c=flipud((sort(res))); 
-top= min(nR,10);
-result=c(1:top);         %top ten
+% top= min(nR,10);
+top= nR;
+result=c(1:top);         
 ind=find(res>=c(top));    %their indices
-result=flipud(sortrows([res(ind) ind],1));
+result=flipud(sortrows([ind res(ind)],2));
 for i=1:top
-    fprintf('\t%d\t\t\t%d \n',result(i,1),result(i,2));
+    % fprintf('\t%d\t\t\t%d \n',result(i,1),result(i,2));
 end
 date=strrep(strrep(datestr(datetime('now')),' ','_'),':','_');
 dlmwrite(strcat('outputs/h_index_',date),result,'	')

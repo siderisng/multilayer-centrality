@@ -58,6 +58,7 @@ end
 fprintf('initialized CPR\n');
 CPR;
 CPR= sort(CPR,2,'descend');
+CPR(26759,:)
 fprintf('sorted CPR\n');
 hIndex=zeros(1,nR);
 for i=1:nR  % calculate h-index

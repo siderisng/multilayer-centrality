@@ -1,4 +1,4 @@
-function biplex_data(file1,file2,delimeter,mapping)
+function biplex_data(file1,file2,delimeter)
 
 %% First initializations
 tic; % start timer
@@ -6,7 +6,7 @@ fileID = fopen(file1);
 A= dlmread(file1,delimeter);
 A2= dlmread(file2,delimeter);
 
-a=0.85; % damping factor
+a=1; % damping factor 0.85 for actual pagerank
 n=max ( max(A(:)), max(A2(:)) ); % number of nodes
 n2=size(A,1); % number of links
 n3=size(A2,1);

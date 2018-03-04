@@ -126,7 +126,7 @@ while (dp >= tol)
                   for l=2:w2
                       author=A(i,l);
                       if author~=0
-                        sumsum= sumsum+ prevC3(author)^a;
+                        sumsum= sumsum+ prevC3( )^a;
                       end
                   end
                   sum = sum + prevPQI(i)/sumsum;

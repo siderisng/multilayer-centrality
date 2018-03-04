@@ -29,4 +29,4 @@
 
 - [x] Write thesis
 
-- [] Write scientific paper
+- [ ] Write scientific paper

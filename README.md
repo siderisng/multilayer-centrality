@@ -18,7 +18,15 @@
 - [x] Test code's accuracy
 
 - [x] Implement H-Index algorithm
-- [ ] Implement C^3 Algorithm
-- [ ] Test and compare algorithms
+- [x] Implement C^3-Index Algorithm
+- [x] Test and compare algorithms
 
-- [ ] Apply to scientometrics
+- [x] Apply to scientometrics
+
+
+- [x] Implement a new algorithm, C^4-Index
+- [x] Apply to scientometrics
+
+- [x] Write thesis
+
+- [] Write scientific paper

@@ -22,11 +22,12 @@
 - [x] Test and compare algorithms
 
 - [x] Apply to scientometrics
-
+- [x] Examine correlation of results
 
 - [x] Implement a new algorithm, C^4-Index
 - [x] Apply to scientometrics
+- [x] Examine correlation of results
 
 - [x] Write thesis
 
-- [ ] Write scientific paper
+- [ ] Complete scientific paper

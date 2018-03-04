@@ -1,6 +1,6 @@
 # multilayer-centrality
 ## **Spectral centrality measures in multilayer networks and their application in scientometrics**
-Written and developed by Giorgos Sideris, 2018
+Written and developed by Giorgos Sideris, 2018  
 Supervised by Dimitrios Katsaros
 
 ### Thesis Document

@@ -6,7 +6,7 @@
 1. Install Matlab and open it
 2. Clone repository
 3. Navigate to the project folder on Matlab
-4. Use `biplex('NAME_OF_TEST_FILE')'` or `'biplex_v2('NAME_OF_TEST_FILE')` on Matlab command line
+4. Use `biplex_data(coauthorship file, citations file,delimiter)` or `h_index(coauthorship file, citations file,delimiter)` or `c3_index(coauthorship file, citations file,delimiter)` or `c4_index(coauthorship file, citations file, biplex results file,delimiter)` on Matlab command line
 5. 🤓🤓🤓
 
 
@@ -18,7 +18,16 @@
 - [x] Test code's accuracy
 
 - [x] Implement H-Index algorithm
-- [ ] Implement C^3 Algorithm
-- [ ] Test and compare algorithms
+- [x] Implement C^3-Index Algorithm
+- [x] Test and compare algorithms
 
-- [ ] Apply to scientometrics
+- [x] Apply to scientometrics
+- [x] Examine correlation of results
+
+- [x] Implement a new algorithm, C^4-Index
+- [x] Apply to scientometrics
+- [x] Examine correlation of results
+
+- [x] Write thesis
+
+- [ ] Complete scientific paper

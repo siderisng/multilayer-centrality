@@ -6,7 +6,7 @@
 1. Install Matlab and open it
 2. Clone repository
 3. Navigate to the project folder on Matlab
-4. Use `biplex('NAME_OF_TEST_FILE')'` or `'biplex_v2('NAME_OF_TEST_FILE')` on Matlab command line
+4. Use `biplex_data(coauthorship file, citations file,delimiter)` or `h_index(coauthorship file, citations file,delimiter)` or `c3_index(coauthorship file, citations file,delimiter)` or `c4_index(coauthorship file, citations file, biplex results file,delimiter)` on Matlab command line
 5. 🤓🤓🤓
 
 

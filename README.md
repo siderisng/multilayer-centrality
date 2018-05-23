@@ -35,4 +35,4 @@ The thesis location is in: `reports/Spectral_centrality_measures_in_multilayer_n
 
 - [x] Write thesis
 
-- [ ] Complete scientific paper
+- [x] Complete scientific paper
